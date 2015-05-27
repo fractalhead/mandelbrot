@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DigTrig.com - Mandelbrot Set</title>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript" src="mandelbrot/script.js" charset="UTF-8"></script>
+<style>
+body {font-family:'Lucida Casual','Comic Sans MS',verdana;font-size:10px;margin:0px;padding:0px;}
+#title {font-size:28px;font-weight:bold;text-align:right;float:right;padding-right:20px;}
+#title div {font-size:18px;}
+#stain {z-index:10;width:371px;height:400px;position:absolute;top:-150px;left:500px;background:url('images/stain.png');opacity:0.5;filter:alpha(opacity=5);}
+#menu {font-size:21px;font-weight:bold;}
+#menu li a {text-decoration:none;}
+#menu li span {font-size:14px;color:#555;}
+
+#screen {
+	border:solid 2px black;
+	position:absolute;
+	top:-1px;
+	left:-1px;
+	height:460px;
+	width:800px;
+	z-index:10;
+	overflow:hidden;
+	clip:rect(auto, auto, auto, auto);
+}
+#screen_gfx {
+	border:none;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+#screen_base {
+	border:none;
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:460px;
+	width:800px;
+}
+#info {
+	width:360px;
+	position:absolute;
+	border:solid 1px black;
+	background-color:#FFF;
+	top:100px;
+	left:819px;
+	padding:10px;
+	z-index:100;
+}
+#controls {
+	width:790px;
+	height:auto;
+	position:absolute;
+	top:460px;
+	left:-1px;
+	z-index:11;
+	border:solid 2px black;
+	background-color:#CCC;
+	padding:5px;
+	vertical-align:top;
+}
+#iesupport {
+	width:400px;
+	height:100px;
+	display:none;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+	font-size:24px;
+	color:maroon;
+	background-color:#FEE;
+	border:solid 10px maroon;
+	z-index:1000;
+	position:absolute;
+	top:50px; left:50px;
+}
+#snapshot IMG {
+	border:none;
+	vertical-align:top;
+}
+#snapshot DIV {
+	height:46px;
+	width:80px;
+	display:inline-block;
+	border:solid 1px black;
+	background-color:#f6f6f6;
+	padding:0;
+}
+#zoom-scale {
+	width:100px;
+	display:inline-block;
+	margin:0 10px;
+}
+#zoom-scale-note {
+	width:20px;
+	height:auto;
+	display:inline-block;
+}
+#video {display:inline-block; position:absolute; top:510px; left:450px;}
+</style>
+</head>
+<body style="background:url('images/grid.gif'); background-position:0px 0px; margin:0px; padding:0px;">
+<div id="stain"></div>
+<div id="title">Dig Trig<div>Mandelbrot Set<br/><a href="/">Menu</a></div></div>
+<div id="info">
+	<img src="mandelbrot/fractal.png" alt="Mandelbrot Fractal" width="113" height="113" align="right" style="margin:0 0 10px 10px;border:solid 1px #000;"/>
+	<h1>Mandelbrot Set</h1>
+	<br/>
+	 The <a href="http://en.wikipedia.org/wiki/Mandelbrot_set" target="_blank">Mandelbrot Set</a> is a mathematical set of points in the complex plane, the boundary of which forms a fractal. When computed and graphed on the complex plane the Mandelbrot set is seen to have an elaborate boundary which, being a fractal, does not simplify at any given magnification. The Mandelbrot set has become popular outside mathematics both for its aesthetic appeal and for being a complicated structure arising from a simple definition, and is one of the best-known examples of mathematical visualization. Many mathematicians, including Mandelbrot, communicated this area of mathematics to the public. In honor of the passing of Benoit Mandelbrot, I wanted to create a demo that rendered his famous fractal.<br/><br/>
+	Each pixel is evaluated to see if it lies within the set.  This can get very time consuming when the area to the left has 368,000 pixels.  In order to speed things up so you can see the fractal faster, I make 4 different passes. Each pass is about 2 times as accurate as the previous, showing higher and higher resolution of the fractal. The first pass has a resolution of 10:1 ration. The final pass evaluates all 368,000 pixels at a 1:1 pixel ratio.<br/><br/>
+	Use the controls to zoom in and zoom out, as well as reset back to the original settings.  You can also click anywhere on the visualization to zoom in centered at that spot. You can save a PNG of the rendered image by clicking on the camera below and then right-click and save as the thumbnail.
+	<div id="snapshot">
+		<a href="javascript:void(0);" onclick="javascript:$('#export').get(0).src = msEngine.vars.gfx.screen.canvas.toDataURL();"><img src="logo/snapshot.png" title="Take a snapshot of the screen" /></a>
+		<div><img id="export" title="Right-click, Save As..." width="80" height="46" /></div>
+	</div>
+	<br/>
+	Rendering is done with HTML5 Canvas object, not Flash. I highly recommend using Chrome or Safari. Firefox will work, but is sluggish. I do not support IE.
+	<br/>
+	<br/>
+	Using a x2 zoom level per zoom, zoom in 50 times. That's 2^50... or a zoom level of x1,125,899,906,842,624. At around 46 times you can start to see Javascript's floating point limit and by around 56 times you are lost within your computer's absolute computational limit. You just pushed your computer to the very edge and it broke down. I don't know about you, but it makes me feel pretty badass. :)
+	<br/>
+	<br/>
+</div>
+<div id="screen">
+	<img id="screen_base" src="mandelbrot/base.png" width="800" height="460"/>
+	<canvas id="screen_gfx" width="800" height="460">Your Browser Doesn't Support the CANVAS tag (HTML5), Try Firefox, Safari or Chrome.</canvas>
+</div>
+<div id="controls">
+	<div id="zoom-scale"></div><div id="zoom-scale-note">x2</div>
+	<button id="zoom-out-button">Zoom Out</button>
+	<button id="zoom-in-button">Zoom In</button> or click above to zoom-in on a specific spot &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button id="reset-button">Reset</button>
+</div>
+<div id="video"><object width="350" height="221"><param name="movie" value="http://www.youtube.com/v/uWU4NTpBh6Y?hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/uWU4NTpBh6Y?hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="350" height="221"></embed></object></div>
+<div id="iesupport">IE is not supported.<br/>Get a real browser.</div>
+</body>
+</html>
