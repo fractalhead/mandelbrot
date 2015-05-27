@@ -114,7 +114,7 @@ body {font-family:'Lucida Casual','Comic Sans MS',verdana;font-size:10px;margin:
 	Each pixel is evaluated to see if it lies within the set.  This can get very time consuming when the area to the left has 368,000 pixels.  In order to speed things up so you can see the fractal faster, I make 4 different passes. Each pass is about 2 times as accurate as the previous, showing higher and higher resolution of the fractal. The first pass has a resolution of 10:1 ration. The final pass evaluates all 368,000 pixels at a 1:1 pixel ratio.<br/><br/>
 	Use the controls to zoom in and zoom out, as well as reset back to the original settings.  You can also click anywhere on the visualization to zoom in centered at that spot. You can save a PNG of the rendered image by clicking on the camera below and then right-click and save as the thumbnail.
 	<div id="snapshot">
-		<a href="javascript:void(0);" onclick="javascript:$('#export').get(0).src = msEngine.vars.gfx.screen.canvas.toDataURL();"><img src="logo/snapshot.png" title="Take a snapshot of the screen" /></a>
+		<a href="javascript:void(0);" onclick="javascript:$('#export').get(0).src = msEngine.vars.gfx.screen.canvas.toDataURL();"><img src="images/snapshot.png" title="Take a snapshot of the screen" /></a>
 		<div><img id="export" title="Right-click, Save As..." width="80" height="46" /></div>
 	</div>
 	<br/>
